@@ -1,0 +1,15 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        i,j,k=0,1,0
+        while(j<len(nums)):
+            if(nums[i]==nums[j]):
+                j+=1
+            else:
+                k+=1
+                nums[k]=nums[j]
+                i,j=j,j+1
+        k+=1
+        # while(k<len(nums)):
+        #     nums[k]='_'
+        #     k+=1
+        return k
