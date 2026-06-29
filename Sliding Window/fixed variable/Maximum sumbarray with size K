@@ -1,0 +1,11 @@
+class Solution:
+    def maxSubarraySum(self, nums, k):
+        # code here 
+        sum=0
+        for i in range(k):
+            sum+=nums[i]
+        maxs=sum
+        for i in range(k,len(nums)):
+            sum+=nums[i]-nums[i-k]
+            maxs=max(sum,maxs)
+        return maxs
