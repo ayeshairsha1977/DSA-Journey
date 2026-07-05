@@ -1,0 +1,20 @@
+class Solution(object):
+    def maximumSubarraySum(self, nums, k):
+        s=set()
+        sumi,maxi,start,end=0,0,0,0
+        for end in range(len(nums)):
+            if nums[end] in s or end-start==k:
+                while (start< end and nums[end] in s) or end-start==k:
+                    sumi-=nums[start]
+                    s.remove(nums[start])
+                    start+=1
+            sumi+=nums[end]
+            s.add(nums[end])
+            if end-start+1==k:
+                maxi=max(maxi,sumi)
+        return maxi
+                
+
+
+      
+        
