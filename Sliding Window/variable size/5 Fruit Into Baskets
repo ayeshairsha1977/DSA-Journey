@@ -1,0 +1,18 @@
+class Solution(object):
+    def totalFruit(self, fruits):
+        m={}
+        start,dif=0,0
+        maxi=0
+        for end in range(len(fruits)):
+            if not fruits[end] in m:
+                dif+=1
+            while dif>2 and fruits[start] in m:
+                m[fruits[start]]=m.get(fruits[start])-1
+                if m[fruits[start]]==0:
+                    del m[fruits[start]]
+                    dif-=1
+                start+=1
+            m[fruits[end]]=m.get(fruits[end],0)+1
+            maxi=max(maxi,end-start+1)
+        return maxi   
+        
