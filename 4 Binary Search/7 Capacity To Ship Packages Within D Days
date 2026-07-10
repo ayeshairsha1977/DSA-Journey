@@ -1,0 +1,22 @@
+class Solution(object):
+    def check(self,weights,ans):
+        day,curr=1,0
+        for w in weights:
+            if curr+w<=ans:
+                curr+=w
+            else:
+                day+=1
+                curr=w
+        return day
+    def shipWithinDays(self, weights, days):
+        low,high,res=max(weights),sum(weights),0
+        while low<=high:
+            mid=low+(high-low)//2
+            if self.check(weights,mid)<=days:
+                res=mid
+                high=mid-1
+            else:
+                low=mid+1
+        return res
+        
+        
