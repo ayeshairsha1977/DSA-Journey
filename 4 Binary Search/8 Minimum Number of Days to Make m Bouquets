@@ -1,0 +1,30 @@
+class Solution(object):
+    def check(self,bloomDay,day,m,k):
+        boque,count=0,0
+        for bloom in bloomDay:
+            if bloom <=day:
+                count+=1
+                if count==k:
+                    boque+=1
+                    count=0
+            else:
+                count=0
+        return boque>=m
+                
+
+
+    def minDays(self, bloomDay, m, k):
+        if m*k>len(bloomDay):
+            return -1
+        start,end=min(bloomDay),max(bloomDay)
+        ans=end
+        while start<=end:
+            mid=start+(end-start)//2
+            if self.check(bloomDay,mid,m,k):
+                ans=mid
+                end=mid-1
+            else:
+                start=mid+1
+        return ans
+
+        
