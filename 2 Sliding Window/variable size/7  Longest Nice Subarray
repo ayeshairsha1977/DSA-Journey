@@ -1,0 +1,10 @@
+class Solution(object):
+    def longestNiceSubarray(self, nums):
+        start,su,ans=0,0,0
+        for end in range(len(nums)):
+            while su & nums[end]:
+                su ^=nums[start]
+                start+=1
+            su|=nums[end]
+            ans=max(ans,end-start+1)
+        return ans
