@@ -1,0 +1,18 @@
+class Solution(object):
+    def maxConsecutiveAnswers(self, ans, k):
+        maxi,start,end,t,f=0,0,0,0,0
+        while end<len(ans):
+            if ans[end]=='T':
+                t+=1
+            else:
+                f+=1
+            while min(t,f)>k and start<=end:
+                if ans[start]=='T':
+                    t-=1
+                else:
+                    f-=1
+                start+=1    
+            maxi=max(maxi,end-start+1)
+            end+=1
+        return maxi 
+        
