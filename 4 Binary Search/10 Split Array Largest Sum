@@ -1,0 +1,24 @@
+class Solution(object):
+    def check(self,nums,k,mid):
+        s=0
+        day=1
+        for i in nums:
+            if s+i <=mid:
+                s+=i
+            else:
+                s=i
+                day+=1
+        return day<=k
+    def splitArray(self, nums, k):
+        start,end=max(nums),sum(nums)
+        ans=-1
+        while start<=end:
+            mid=start+(end-start)//2
+            if self.check(nums,k,mid):
+                ans=mid
+                end=mid-1
+            else:
+                start=mid+1
+        return ans
+
+        
