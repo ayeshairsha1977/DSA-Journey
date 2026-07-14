@@ -1,0 +1,25 @@
+def check(books,ans,m):
+    student=1
+    s=0
+    for i in books:
+        if s+i<=ans:
+            s+=i
+        else:
+            student+=1
+            s=i
+    return student<=m
+
+
+def allocate_books(books, N, M):
+    # User writes core logic here
+    ans=-1
+    start,end=max(books),sum(books)
+    while start<=end:
+        mid=start+(end-start)//2
+        if check(books,mid,M):
+            ans=mid
+            end=mid-1
+        else:
+            start=mid+1
+    return ans
+            
