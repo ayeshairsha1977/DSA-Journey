@@ -1,0 +1,14 @@
+#Parameterized Recursioin
+#  def recursive(N,i=1):
+#     if i>N:
+#         return 
+#     print(i)
+#     return recursive(N,i+1)
+
+#functional recursion
+def recursive(N):
+    if N==0:
+        return 
+    recursive(N-1)
+    print(N)
+recursive(10)

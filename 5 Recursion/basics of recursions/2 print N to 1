@@ -1,0 +1,6 @@
+def recursive(N):
+    if N==0:
+        return 
+    print(N)
+    recursive(N-1)
+recursive(10)

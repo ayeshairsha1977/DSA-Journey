@@ -1,0 +1,6 @@
+def recursive(s,l):
+    if l<0:
+        return ""
+    return s[l] + recursive(s,l-1)
+s="doreamon"
+print(recursive(s,len(s)-1))
