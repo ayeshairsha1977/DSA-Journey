@@ -1,0 +1,17 @@
+class Solution(object):
+    def generate(self,curr,o,c,n,l):
+        if len(curr)==2*n:
+            l.append(curr)
+            return
+        if o<n:
+            self.generate(curr+'(',o+1,c,n,l)
+        if c<o:
+            self.generate(curr+')',o,c+1,n,l)
+
+    def generateParenthesis(self, n):
+        l=[]
+        self.generate("",0,0,n,l)
+        return l
+        
+
+        
