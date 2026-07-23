@@ -1,0 +1,24 @@
+class Solution(object):
+    def canBeValid(self, s, locked):
+        o,f=[],[]
+        if len(s)%2==1:
+            return False
+        for i in range(len(s)):
+            if locked[i]=='0':
+                f.append(i)
+            elif s[i]=='(':
+                o.append(i)
+            else:
+                if o:
+                    o.pop()
+                elif f:
+                    f.pop()
+                else:
+                    return False
+        while o and f:
+            if o[-1]<f[-1]:
+                o.pop()
+                f.pop()
+            else:
+                break
+        return len(o)==0
