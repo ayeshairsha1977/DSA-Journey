@@ -1,0 +1,14 @@
+class Solution(object):
+    def gen(self,nums,curr,i,l):
+        if i==len(nums):
+            l.append(list(curr))
+            return
+        curr.append(nums[i])
+        self.gen(nums,curr,i+1,l)
+        curr.pop()
+        self.gen(nums,curr,i+1,l)
+    def subsets(self, nums):
+        l=[]
+        self.gen(nums,[],0,l)
+        return l
+        
