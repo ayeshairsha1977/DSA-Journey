@@ -1,0 +1,21 @@
+class Solution(object):
+    def gen(self,nums,l,curr,seen):
+        if len(nums)==len(curr):
+            l.append(curr[:])
+            return 
+        for i in range(len(nums)):
+            if i>0 and nums[i-1]==nums[i] and not seen[i-1]:
+                continue
+            if seen[i]:
+                continue
+            curr.append(nums[i])
+            seen[i]=True
+            self.gen(nums,l,curr,seen)
+            curr.pop()
+            seen[i]=False
+    def permuteUnique(self, nums):
+        l=[]
+        seen=[False]*len(nums)
+        nums.sort()
+        self.gen(nums,l,[],seen)
+        return l

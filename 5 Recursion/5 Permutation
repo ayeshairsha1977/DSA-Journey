@@ -1,0 +1,20 @@
+class Solution(object):
+    def gen(self,nums,curr,l,i,seen):
+        if len(curr)==len(nums):
+            l.append(curr[:])
+            return
+        for i in range(len(nums)):
+            if seen[i]:
+                continue
+            curr.append(nums[i])
+            seen[i]=True
+            self.gen(nums,curr,l,i+1,seen)
+            curr.pop()
+            seen[i]=False
+
+    
+    def permute(self, nums):
+        l=[]  
+        seen=[False]*len(nums)
+        self.gen(nums,[],l,0,seen)
+        return l
