@@ -1,0 +1,17 @@
+class Solution(object):
+    def gen(self,nums,t,l,curr,sum,start):
+        if sum==t:
+            l.append(curr[:])
+            return
+        if sum>t:
+                return 
+        for i in range(start,len(nums)):
+            sum+=nums[i]
+            curr.append(nums[i])
+            self.gen(nums,t,l,curr,sum,i)
+            sum-=nums[i]
+            curr.pop()
+    def combinationSum(self, candidates, target):
+        l=[]
+        self.gen(candidates,target,l,[],0,0)
+        return l
