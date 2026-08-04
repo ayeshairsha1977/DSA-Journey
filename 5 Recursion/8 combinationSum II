@@ -1,0 +1,25 @@
+class Solution(object):
+    def gen(self,arr,t,l,curr,s,start,seen):
+        if s>=t:
+            if s==t:
+                l.append(curr[:])
+            return
+        for i in range(start,len(arr)):
+            if i>start and arr[i]==arr[i-1]:
+                continue
+            if seen[i]:
+                continue
+            s+=arr[i]
+            curr.append(arr[i])
+            seen[i]=True
+            self.gen(arr,t,l,curr,s,i+1,seen)
+            s-=arr[i]
+            curr.pop()
+            seen[i]=False
+
+    def combinationSum2(self, candidates, target):
+        l=[]
+        seen=[False]*len(candidates)
+        candidates.sort()
+        self.gen(candidates,target,l,[],0,0,seen)
+        return l
