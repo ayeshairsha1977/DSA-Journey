@@ -1,0 +1,21 @@
+class Solution(object):
+    def gen(self,l,curr,k,n,start,seen):
+        if len(curr)==k and sum(curr)==n:
+            l.append(curr[:])
+            return
+        if sum(curr)>n:
+            return 
+        for i in range(start,10):
+            curr.append(i)
+            seen[i-1]=True
+            self.gen(l,curr,k,n,i+1,seen)
+            curr.pop()
+            seen[i-1]=False
+
+
+    def combinationSum3(self, k, n):
+        seen=['False']*10
+        l=[]
+        self.gen(l,[],k,n,1,seen)
+        return l
+        
