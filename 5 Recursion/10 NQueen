@@ -1,0 +1,57 @@
+import copy
+class Solution(object):
+    def check(self,n,arr,row,col):
+        #check col
+        for r in range(row):
+            if arr[r][col]==1:
+                return False
+        #check diagonal
+        #left dia
+        tempcol=col
+        temprow=row
+        while tempcol>0 and temprow>0:
+            tempcol-=1
+            temprow-=1
+            if arr[temprow][tempcol]==1:
+                return False
+        tempcol=col
+        temprow=row
+        while tempcol<n-1 and temprow>0:
+            tempcol+=1
+            temprow-=1
+            if arr[temprow][tempcol]==1:
+                return False 
+        return True
+
+    def gen(self,ans,n,arr,row,col):
+        if row==n:
+            dum=copy.deepcopy(arr)
+            d=[]
+            for i in dum:
+                str=""
+                for leter in i:
+                    if leter==1:
+                        str+='Q'
+                    else:
+                        str+='.'
+                d.append(str)
+            ans.append(d)
+            return 
+        for col in range(n):
+            if self.check(n,arr,row,col):
+                arr[row][col]=1
+                self.gen(ans,n,arr,row+1,col)
+                arr[row][col]=0
+            
+    def solveNQueens(self, n):
+        arr=[[0]*n for _ in range(n)]
+        l=[]
+        self.gen(l,n,arr,0,0)
+        return l
+        
+        
+        """
+        :type n: int
+        :rtype: List[List[str]]
+        """
+        
