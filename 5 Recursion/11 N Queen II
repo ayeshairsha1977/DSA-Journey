@@ -1,0 +1,41 @@
+class Solution(object):
+    def check(self,n,arr,row,col):
+        #checking column wise
+        for i in range(row-1,-1,-1):
+            if arr[i][col]==1:
+                return False
+        #checking diagonal right
+        drow,dcol=row,col
+        while drow>0 and dcol<n-1:
+            drow-=1
+            dcol+=1
+            if arr[drow][dcol]==1:
+                return False
+        #checking diagonal left
+        drow,dcol=row,col
+        while drow>0 and dcol>0:
+            drow-=1
+            dcol-=1
+            if arr[drow][dcol]==1:
+                return False
+        return True
+
+    def gen(self,n,arr,row):
+        if row==n:
+            self.count+=1
+            return
+        for col in range(n):
+            if self.check(n,arr,row,col):
+                arr[row][col]=1
+                self.gen(n,arr,row+1)
+                arr[row][col]=0
+    def totalNQueens(self, n):
+        self.count=0
+        arr=[[0]*n for _ in range(n)]
+        self.gen(n,arr,0)  
+        return self.count
+        """
+        :type n: int
+        :rtype: int
+        """
+        
