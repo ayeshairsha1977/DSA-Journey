@@ -1,0 +1,125 @@
+class Node:
+    def __init__(self,data):
+        self.data=data
+        self.next=None
+class LinkedList:
+    def __init__(self):
+        self.head=None
+    def printing(self):
+        while True:
+            print("""
+                ****LINKED LIST ****
+                1.insert at front
+                2.insert at back
+                3.insert at mid
+                4.delete at front
+                5.delete at back
+                6.delete at mid
+                7.Display
+                8.Exit
+            """)
+            choice=int(input("Enter Your Choice:"))
+            match choice:
+                case 1:
+                    self.insertAtFront(int(input("Enter the data:")))
+                case 2:
+                    self.insertAtEnd(int(input("Enter the data:")))
+                case 3:
+                    pos,value=map(int,input("Enter the position and value:").split())
+                    self.insertAtMid(pos,value)
+                case 4:
+                    self.deleteAtFront()
+                case 5:
+                    self.deleteAtEnd()
+                case 6:
+                    pos=int(input("Enter the position:"))
+                    self.deleteAtMid(pos)
+                case 7:
+                    self.display()
+                case 8:
+                    break
+                case _:
+                    print("invalid choice")
+
+
+    def insertAtEnd(self,data):
+        N1=Node(data)
+        if self.head==None:
+            self.head=N1
+        else:
+            temp=self.head
+            while temp.next:
+                temp=temp.next
+            temp.next=N1
+    def insertAtFront(self,data):
+        N1=Node(data)
+        if self.head==None:
+            self.head=N1
+            return
+        N1.next=self.head
+        self.head=N1
+    def insertAtMid(self,pos,data):
+        if pos==1:
+            self.insertAtFront(data)
+            return
+        N1=Node(data)
+        temp=self.head
+        curr=1
+        while curr<pos-1:
+            if temp is None:
+                print("Invalid Position please Try again!")
+                return
+            temp=temp.next
+            curr+=1
+        N1.next=temp.next
+        temp.next=N1
+    def deleteAtFront(self):
+        if self.head is None:
+            print("Opps!Empty List.you cant delete any element")
+            return 
+        temp=self.head
+        if temp.next:
+            self.head=self.head.next
+        else:
+            self.head=None
+        temp.next=None
+    def deleteAtEnd(self):
+        if self.head is None:
+            print("Opps!Empty List.you cant delete any element")
+            return
+        temp=self.head
+        if temp.next is None:
+            self.head=None
+            return
+        while temp.next.next:
+            temp=temp.next   
+        temp.next=None       
+    def deleteAtMid(self,pos):
+        if pos==1:
+            self.deleteAtFront()
+            return
+        temp=self.head
+        curr=1
+
+        while curr<pos-1:
+            if temp is None:
+                print("Invalid position please try again!")
+                return
+            temp=temp.next
+            curr+=1
+        temp2=temp.next
+        temp.next=temp2.next
+        temp2.next=None
+    def display(self):
+        temp=self.head
+        print("Linked List")
+        if self.head is None:
+            print("opps! Empty List....")
+            return 
+        while temp:
+            print(temp.data,end="->")
+            temp=temp.next
+        print("NULL")
+
+ll=LinkedList()
+ll.printing()
