@@ -1,0 +1,19 @@
+class Solution(object):
+    def check(self,n,arr,row,col):
+        value=arr[row][col]
+        for c in range(col+1,n):
+            if arr[row][c]==value:
+                return False
+        for r in range(row+1,n):
+            if arr[r][col]==value:
+                return False
+        return True
+            
+    def checkValid(self, matrix):
+        n=len(matrix)
+        for r in range(0,n):
+            for c in range(0,n):
+                if not self.check(n,matrix,r,c):
+                    return False
+        return True
+        
