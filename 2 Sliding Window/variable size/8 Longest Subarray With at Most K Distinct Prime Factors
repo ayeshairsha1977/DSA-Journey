@@ -1,0 +1,48 @@
+class Solution(object):
+    def prime(self,ele):
+        if ele<=1:
+            return []
+        l=[]
+        mul=2
+        while mul*mul<=ele:
+            if ele%mul==0:
+                l.append(mul)
+                while ele%mul==0:
+                    ele//=mul
+            mul+=1
+        if ele>1:
+            l.append(ele)
+        return l
+    def longestSubarray(self, nums, k):
+        res=0
+        start=0
+        m={}
+        count=0
+        for end in range(len(nums)):
+            l=self.prime(nums[end])
+            for i in l:
+                if i not in m:
+                    m[i]=0
+                m[i]+=1
+                if m[i]==1:
+                    count+=1
+            while count>k:
+                l=self.prime(nums[start])
+                for i in l:
+                    m[i]-=1
+                    if m[i]==0:
+                        del m[i]
+                        count-=1
+                        
+                start+=1
+                
+            res=max(res,end-start+1)
+                
+
+        return res
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
