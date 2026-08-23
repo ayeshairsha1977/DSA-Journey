@@ -1,0 +1,45 @@
+#  Reverse Nodes in Even Length Groups
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def reverse(self,head,masterCount):
+        curr=head
+        start=head
+        head=head.next
+        curr.next=None
+        count=1
+        while head is not None and count<masterCount:
+            temp=head
+            head=head.next
+            temp.next=curr
+            curr=temp
+            count+=1
+        return curr,start
+        
+    def reverseEvenLengthGroups(self, head):
+        group=1
+        temp=head
+        prev=None
+        while temp is not None:
+            count=0
+            curr=temp
+            while count<group and temp is not None:
+                temp=temp.next
+                count+=1
+            if count%2==0:
+                htemp,ttemp=self.reverse(curr,count)
+                if prev is not None:
+                    prev.next=htemp
+                ttemp.next=temp
+                prev=ttemp
+            else:
+                prev=curr
+                for _ in range(count-1):
+                    prev=prev.next
+            group+=1
+
+        return head
+        
