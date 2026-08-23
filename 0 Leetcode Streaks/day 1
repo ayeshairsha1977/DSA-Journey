@@ -1,0 +1,17 @@
+# 3622. Check Divisibility by Digit Sum and Product
+class Solution(object):
+    def checkDivisibility(self, n):
+        num=n
+        s=0
+        pro=1
+        while num:
+            digit=num%10
+            s+=digit
+            pro*=digit
+            num//=10
+        return n%(s+pro)==0
+        """
+        :type n: int
+        :rtype: bool
+        """
+        
