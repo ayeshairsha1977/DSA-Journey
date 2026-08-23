@@ -1,0 +1,16 @@
+# 1927. Sum Game
+class Solution(object):
+    def sumGame(self, num):
+        chances=list(filter(lambda i: num[i]=='?',range(len(num))))
+        half=len(num)//2
+        left=num[:half]
+        right=num[half:]
+        s1=sum(int(x) for x in left if x!='?')
+        s2=sum(int(x) for x in right if x!='?')
+        q1=left.count('?')
+        q2=right.count('?')
+        return (s1-s2)*2 != (q2-q1)*9
+       
+
+         
+        
