@@ -1,0 +1,51 @@
+# Reverse Nodes in k-Group
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def reverse(self,head,k):
+        curr=head
+        prev=head
+        end=head
+        head=head.next
+        count=1
+        while head is not None and count<k:
+            curr=head
+            head=head.next
+            curr.next=prev
+            prev=curr
+            count+=1
+        return curr,end
+        
+
+    def reverseKGroup(self, head, k):
+        curr=head
+        temp=head
+        prev=None
+        while temp is not None:
+            count=0
+            curr=temp
+            while count<k and temp is not None:
+                temp=temp.next
+                count+=1
+            if count==k:
+                start,end=self.reverse(curr,k)
+                if prev is None:
+                    head=start
+                else:
+                    prev.next=start
+                end.next=temp
+            prev=curr
+            
+
+        return head
+        
+
+        """
+        :type head: Optional[ListNode]
+        :type k: int
+        :rtype: Optional[ListNode]
+        """
+        
