@@ -1,0 +1,36 @@
+# Swapping Nodes in a Linked List
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def swapNodes(self, head, k):
+        temp=head
+        count=0
+        while temp:
+            temp=temp.next
+            count+=1
+        c=1
+        n1=head
+        while c<k:
+            n1=n1.next
+            c+=1
+        n2=head
+        c=1
+        while c<count-k+1:
+            n2=n2.next
+            c+=1
+        temp=n1.val
+        n1.val=n2.val
+        n2.val=temp
+        return head
+
+
+
+        """
+        :type head: Optional[ListNode]
+        :type k: int
+        :rtype: Optional[ListNode]
+        """
+        
