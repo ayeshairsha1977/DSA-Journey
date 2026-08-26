@@ -1,0 +1,38 @@
+# Shortest and Lexicographically Smallest Beautiful String
+        class Solution(object):
+            def shortestBeautifulSubstring(self, s, k):
+                ans=""
+                curr=""
+                count=0
+                store=0
+                for i in s:
+                    curr+=i
+                    if i=='1':
+                        count+=1
+                    while curr and curr[0]!='1':
+                        curr=curr[1:]
+                    if count==k:
+                        if store==0:
+                            ans=curr
+                            store=len(ans)
+                        elif len(curr)<store:
+                            ans=curr
+                            store=len(ans)
+                        elif len(curr)==store and curr<ans:
+                            ans=curr    
+            
+                        while count!=k-1:
+                            if curr[0]=='1':
+                                count-=1
+                            curr=curr[1:]
+                return ans
+
+
+
+
+            """
+            :type s: str
+            :type k: int
+            :rtype: str
+            """
+            
