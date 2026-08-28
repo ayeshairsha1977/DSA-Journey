@@ -1,0 +1,18 @@
+# Lexicographically Smallest Palindrome
+class Solution(object):
+    def makeSmallestPalindrome(self, s):
+        f,e=0,len(s)-1
+        while f<e:
+            if s[f]!=s[e]:
+                if s[f]<s[e]:
+                    s=s[:e]+s[f]+s[e+1:]
+                else:
+                    s=s[:f]+s[e]+s[f+1:]
+            f+=1
+            e-=1
+        return s
+        """
+        :type s: str
+        :rtype: str
+        """
+        
