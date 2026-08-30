@@ -1,0 +1,15 @@
+class Solution(object):
+    def sumDecoded(self, nums):
+        s=0
+        for num in nums:
+            width=num%10
+            d=num//10
+            x=int(str(d)[:width])
+            y=int(str(d)[width:])
+            s=(s+pow(x,y,(10**9)+7))%((10**9)+7)
+        return s
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ©leetcode
