@@ -1,0 +1,19 @@
+class Solution(object):
+    def countSpecialIntegers(self, nums):
+        seen=set()
+        bad=set()
+        pre=None
+        for num in nums:
+            if pre!=num:
+                if num in seen:
+                    bad.add(num)
+                else:
+                    seen.add(num)
+                pre=num
+
+        return len(seen-bad)
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
