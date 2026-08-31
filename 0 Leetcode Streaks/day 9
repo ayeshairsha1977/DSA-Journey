@@ -1,0 +1,21 @@
+class Solution(object):
+    def minimumDeletions(self, nums):
+        mini_v,maxi_v=min(nums),max(nums)
+        if mini_v==maxi_v:
+            return 1
+        mini,maxi=-1,-1
+        for i in range(len(nums)):
+            if mini_v==nums[i]:
+                mini=i
+            elif maxi_v==nums[i]:
+                maxi=i
+        n=len(nums)
+        left=max(mini,maxi)+1
+        right=n-min(maxi,mini)
+        mixed = n-max(maxi,mini)+min(maxi,mini)+1
+        return min(left,right,mixed)
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
