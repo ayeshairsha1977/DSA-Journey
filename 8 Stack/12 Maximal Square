@@ -1,0 +1,43 @@
+class Solution(object):
+    def maximumArea(self,h):
+        area=0
+        n=len(h)
+        stack=[]
+        for i in range(n):
+            while stack and h[i]<h[stack[-1]]:
+                val=h[stack.pop()]
+                if stack:
+                    width=i-stack[-1]-1
+                else:
+                    width=i
+                side=min(width,val)
+                area=max(area,side**2 )
+            stack.append(i)
+        while stack:
+            val=h[stack.pop()]
+            if stack:
+                width=n-stack[-1]-1
+            else:
+                width=n
+            side=min(width,val)
+            area=max(area,side**2)
+        return area
+
+    def maximalSquare(self, matrix):
+        n=len(matrix)
+        m=len(matrix[0])
+        h=[0]*m
+        area=0
+        for row in range(n):
+            for col in range(m):
+                if matrix[row][col]=="1":
+                    h[col]+=1
+                else:
+                    h[col]=0
+            area=max(area,self.maximumArea(h))
+        return area
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        
