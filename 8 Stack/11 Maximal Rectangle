@@ -1,0 +1,42 @@
+class Solution(object):
+    def maximumArea(self,h):
+        m=len(h)
+        stack=[]
+        area=0
+        for i in range(m):
+            while stack and h[i]<h[stack[-1]]:
+                val=h[stack.pop()]
+                if stack:
+                    width=i-stack[-1]-1
+                else:
+                    width=i
+                area=max(area,val*width)
+            stack.append(i)
+        while stack:
+            val=h[stack.pop()]
+            if stack:
+                width=m-stack[-1]-1
+            else:
+                width=m
+            area=max(area,val*width)
+        return area
+
+    def maximalRectangle(self, matrix):
+        n=len(matrix)
+        m=len(matrix[0])
+        h=[0]*m
+        area=0
+        for row in range(n):
+            for col in range(m):
+                if matrix[row][col]=="1":
+                    h[col]+=1
+                else:
+                    h[col]=0
+            area=max(area,self.maximumArea(h))
+        return area
+                
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        
