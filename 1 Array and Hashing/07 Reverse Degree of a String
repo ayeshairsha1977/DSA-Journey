@@ -1,0 +1,13 @@
+class Solution(object):
+    def reverseDegree(self, ss):
+        s=0
+        i=1
+        for ch in ss:
+            index=ord(ch)-ord('a')
+            s+=(26-index)*i
+            i+=1
+        return s
+        """
+        :type s: str
+        :rtype: int
+        """
