@@ -1,0 +1,15 @@
+
+class Solution(object):
+    def isCircularSentence(self, sentence):
+        if sentence[0]!=sentence[-1]:
+            return False
+        for ch in range(len(sentence)):
+            if sentence[ch]==" ":
+                if sentence[ch-1]!=sentence[ch+1]:
+                    return False
+        return True
+        """
+        :type sentence: str
+        :rtype: bool
+        """
+        
