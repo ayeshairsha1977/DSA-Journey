@@ -1,0 +1,24 @@
+class Solution(object):
+    def minOperations(self, nums, x):
+        curr=0
+        maxlen=-1
+        target=sum(nums)-x
+        if x>sum(nums):
+            return -1
+        left=0
+        for right in range(len(nums)):
+            curr+=nums[right]
+            while curr>target:
+                curr-=nums[left]
+                left+=1
+            if curr==target:
+                maxlen=max(maxlen,right-left+1)
+        return len(nums)-maxlen if maxlen!=-1 else -1
+
+            
+        """
+        :type nums: List[int]
+        :type x: int
+        :rtype: int
+        """
+        
