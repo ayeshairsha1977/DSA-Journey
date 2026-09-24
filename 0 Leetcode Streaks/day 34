@@ -1,0 +1,19 @@
+
+Smallest Index With Digit Sum Equal to Index
+class Solution(object):
+    def sumofdigit(self,num):
+        s=0
+        while num>0:
+            s+=num%10
+            num//=10
+        return s
+    def smallestIndex(self, nums):
+        for i in range(len(nums)):
+            if self.sumofdigit(nums[i])==i:
+                return i
+        return -1
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
