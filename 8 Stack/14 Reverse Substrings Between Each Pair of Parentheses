@@ -1,0 +1,30 @@
+class Solution(object):
+    def reverseParentheses(self, s):
+        res=[]
+        stack=[]
+        count=0
+        for ch in range(len(s)):
+            if count==0 and s[ch] not in "()":
+                res.append(s[ch])
+                continue
+            if s[ch]=='(':
+                stack.append(s[ch])
+                count+=1
+            elif s[ch]==')':
+                temp=[]
+                while stack[-1]!='(':
+                    temp.append(stack.pop())
+                stack.pop()
+                stack.extend(temp)
+                count-=1
+                if count==0:
+                    res.extend(stack)
+                    stack=[]
+            else:
+                stack.append(s[ch])
+        return "".join(res)
+        """
+        :type s: str
+        :rtype: str
+        """
+        
