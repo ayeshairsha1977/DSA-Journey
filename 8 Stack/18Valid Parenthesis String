@@ -1,0 +1,25 @@
+class Solution(object):
+    def checkValidString(self, st):
+        s,e=0,0
+        for ch in st:
+            if ch=='(':
+                s+=1
+                e+=1
+            elif ch==')':
+                s-=1
+                e-=1
+            else:
+                s-=1
+                e+=1
+            if e<0:
+                return False
+            if s<0:
+                s=0
+        return s==0
+                
+        
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
