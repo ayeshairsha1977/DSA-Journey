@@ -1,0 +1,22 @@
+class Solution(object):
+    def removeOuterParentheses(self, s):
+        d=0
+        t=''
+        for ch in s:
+            if ch=='(' and d==0:
+                d+=1
+                continue
+            elif ch==')' and d==1:
+                d-=1
+                continue
+            t+=ch
+            if ch=='(':
+                d+=1
+            else:
+                d-=1
+        return t
+        """
+        :type s: str
+        :rtype:qq str
+        """
+        
