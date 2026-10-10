@@ -1,0 +1,34 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+from collections import deque
+class Solution(object):
+    def connect(self, root):
+        if root is None:
+            return None
+        leftnode=root
+        while leftnode:
+            dummy=Node(0)
+            tail=dummy
+            curr=leftnode
+            while curr:
+                if curr.left:
+                    tail.next=curr.left
+                    tail=tail.next
+                if curr.right:
+                    tail.next=curr.right
+                    tail=tail.next
+                curr=curr.next
+            leftnode=dummy.next
+        return root
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        
