@@ -1,0 +1,15 @@
+class Solution(object):
+    def maxAlternatingSum(self, nums):
+        nums.sort(key=lambda x : x*x)
+        s=0
+        for i in range(len(nums)):
+            if i<len(nums)//2:
+                s-=nums[i]*nums[i]
+            else:
+                s+=nums[i]*nums[i]
+        return s
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
