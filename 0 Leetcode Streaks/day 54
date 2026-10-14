@@ -1,0 +1,18 @@
+
+class Solution(object):
+    def maxSumOfSquares(self, num, sum):
+        if sum > 9 * num:
+            return ""
+
+        digits = []
+        
+        while sum > 0 and len(digits) < num:
+            digit = min(9, sum)
+            digits.append(str(digit))
+            sum -= digit
+
+        if sum > 0:
+            return ""
+
+        digits.extend(['0'] * (num - len(digits)))
+        return ''.join(digits)
