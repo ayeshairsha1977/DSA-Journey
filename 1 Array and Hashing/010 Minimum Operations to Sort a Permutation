@@ -1,0 +1,27 @@
+
+class Solution(object):
+    def minOperations(self, nums):
+        n = len(nums)
+        zero = nums.index(0)
+
+        inc = all(
+            nums[(zero + i) % n] == i
+            for i in range(n)
+        )
+
+        dec = all(
+            nums[(zero - i) % n] == i
+            for i in range(n)
+        )
+
+        ans = float('inf')
+
+        if inc:
+            ans = min(ans, zero)
+            ans = min(ans, n - zero + 2)
+
+        if dec:
+            ans = min(ans, zero + 2)
+            ans = min(ans, n - zero)
+
+        return ans if ans != float('inf') else -1
