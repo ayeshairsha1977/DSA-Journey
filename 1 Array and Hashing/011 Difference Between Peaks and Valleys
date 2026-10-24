@@ -1,0 +1,12 @@
+class Solution(object):
+    def peakValleyDifference(self, nums):
+        p,v=0,0
+        for i in range(1,len(nums)-1):
+            if nums[i]<nums[i-1] and nums[i]<nums[i+1]:
+                v+=nums[i]
+            elif nums[i]>nums[i-1] and nums[i]>nums[i+1]:
+                p+=nums[i]
+        return p-v
+        """
+        :type nums: List[int]
+        :rtype: 
