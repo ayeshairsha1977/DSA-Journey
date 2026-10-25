@@ -7,6 +7,4 @@ class Solution(object):
             elif nums[i]>nums[i-1] and nums[i]>nums[i+1]:
                 p+=nums[i]
         return p-v
-        """
-        :type nums: List[int]
-        :rtype: 
+   
