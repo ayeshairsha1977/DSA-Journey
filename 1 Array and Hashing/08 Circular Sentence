@@ -8,8 +8,5 @@ class Solution(object):
                 if sentence[ch-1]!=sentence[ch+1]:
                     return False
         return True
-        """
-        :type sentence: str
-        :rtype: bool
-        """
+     
         
