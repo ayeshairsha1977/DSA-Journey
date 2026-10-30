@@ -15,8 +15,5 @@ class Solution(object):
         self.res.append(root.val)
         return self.res
     
-        """
-        :type root: Optional[TreeNode]
-        :rtype: List[int]
-        """
+        
         
