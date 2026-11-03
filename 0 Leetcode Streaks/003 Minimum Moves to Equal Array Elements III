@@ -1,0 +1,12 @@
+class Solution(object):
+    def minMoves(self, nums):
+        m=max(nums)
+        move=0
+        for i in nums:
+            move+=abs(i-m)
+        return move
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
