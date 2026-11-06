@@ -1,0 +1,38 @@
+class Solution(object):
+    def countServers(self, n, logs, x, queries):
+        logs.sort(key=lambda x: x[1])
+        i_q=sorted(enumerate(queries),key=lambda x: x[1])
+        fre=[0]*(n+1)
+        res=[0]*len(queries)
+        l,r,a=0,0,0
+        for ind,q in i_q:
+            start=q-x
+            while r<len(logs) and logs[r][1]<=q:
+                server=logs[r][0]
+                if fre[server]==0:
+                    a+=1
+                fre[server]+=1
+                r+=1
+            while l<len(logs) and logs[l][1]<start:
+                server=logs[l][0]
+                fre[server]-=1
+                if fre[server]==0:
+                    a-=1
+                l+=1
+            res[ind]=n-a 
+        return res
+            
+
+                
+                
+
+
+            
+        """
+        :type n: int
+        :type logs: List[List[int]]
+        :type x: int
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        
