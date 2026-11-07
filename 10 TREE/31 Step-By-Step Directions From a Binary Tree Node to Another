@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def getDirections(self, root, startValue, destValue):
+        self.start=""
+        self.end=""
+        def dfs(root,dir):
+            if root is None:
+                return False
+            if root.val == startValue:
+                self.start = dir
+                return True
+            if root.val == destValue:
+                self.end = dir
+                return True
+            left=dfs(root.left,dir+"L")
+            right=dfs(root.right,dir+"R")
+            return left or right
+        dfs(root,"")
+        j=0
+        while j<min(len(self.start),len(self.end)) and self.start[j]==self.end[j]:
+            j+=1
+        
+        return "U"*(len(self.start)-j)+self.end[j:]
+
+        
+        
+        res
+        """
+        :type root: Optional[TreeNode]
+        :type startValue: int
+        :type destValue: int
+        :rtype: str
+        """
+        
