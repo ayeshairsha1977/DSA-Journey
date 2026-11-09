@@ -6,27 +6,37 @@
 #         self.right = right
 class Solution(object):
     def getDirections(self, root, startValue, destValue):
-        def dfs(root,target,path):
-            if root is None:
+        def lca(node):
+            if node is None:
                 return None
+            if node.val==startValue or node.val==destValue:
+                return node
+            left=lca(node.left)
+            right=lca(node.right)
+            if left and right:
+                return node
+            return left or right
+        ancestor=lca(root)
+        def path(root,target,p):
+            if root is None:
+                return False
             if root.val==target:
-                return path
-            left=dfs(root.left,target,path+"L")
-            if left is not None:
-                return left
-            right=dfs(root.right,target,path+"R")
-            return right
-        self.start=dfs(root,startValue,"")
-        self.end=dfs(root,destValue,"")
-        j=0
-        while j<min(len(self.start),len(self.end)) and self.start[j]==self.end[j]:
-            j+=1
-        return "U"*(len(self.start)-j)+self.end[j:]
-            
+                return True
+            p.append("L")
+            if path(root.left,target,p):
+                return True
+            p.pop()
+            p.append("R")
+            if path(root.right,target,p):
+                return True
+            p.pop()
+            return False
+        start=[]
+        end=[]
+        path(ancestor,startValue,start)
+        path(ancestor,destValue,end)
+        return "U"*len(start)+ "".join(end)
 
-        
-        
-        res
         """
         :type root: Optional[TreeNode]
         :type startValue: int
