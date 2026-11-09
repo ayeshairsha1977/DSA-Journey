@@ -1,0 +1,43 @@
+
+class Tree:
+  def __init__(self,val):
+    self.val=val
+    self.left=None
+    self.right=None
+root=Tree("Earth")
+north_america=Tree("North America")
+south_america=Tree("South America")
+us=Tree("United States")
+canada=Tree("Canada")
+ny=Tree("New York")
+boston=Tree("Boston")
+ontario=Tree("Ontario")
+q=Tree("Quebec")
+
+root.left(north_america)
+root.right(south_america)
+
+north_america.left(us)
+notrh_america.right(canada)
+
+us.left(ny)
+us.right(boston)
+
+canada.left(ontario)
+canada.right(q)
+
+s1="Quebec"
+s2="New York"
+
+def lca(node):
+  if node is None:
+    return None
+  if node.val==s1 or node.val==s2:
+    return node
+  left=lca(node.left)
+  right=lca(node.right)
+  if left and right:
+    return node
+  return left or right
+node=lca(root)
+print(node.val)
