@@ -1,0 +1,32 @@
+class Solution(object):
+    def maximumSaleItems(self, items, budget):
+        ans=0
+        n=len(items)
+        miin= min(cost for factor,cost in items)
+        for mass in range(1<<n):
+            total=0
+            cost=0
+            index=[]
+            for i in range(n):
+                if mass & 1<<i:
+                    cost+=items[i][1]
+                    total+=1
+                    index.append(i)
+            if cost>budget:
+                continue
+            for i in index:
+                factor_i=items[i][0]
+                for j in range(n):
+                    if i!=j and items[j][0]%factor_i==0:
+                        total+=1
+            rem=budget-cost
+            total+=rem/miin
+            ans=max(ans,total)
+        return ans
+
+        """
+        :type items: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        
